@@ -1,75 +1,86 @@
 // JavaScript Document
-const reset = () => {
-    $("#game li").text("+");
-    $("#game li").removeClass("disable");
-    $("#game li").removeClass("o");
-    $("#game li").removeClass("x");
-    $("#game li").removeClass("btn-primary");
-    $("#game li").removeClass("btn-info");
-    count = 0;
-};
-
-const isOWon = () =>
-    ($("#one").hasClass("o") &&
-        $("#two").hasClass("o") &&
-        $("#three").hasClass("o")) ||
-    ($("#four").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#six").hasClass("o")) ||
-    ($("#seven").hasClass("o") &&
-        $("#eight").hasClass("o") &&
-        $("#nine").hasClass("o")) ||
-    ($("#one").hasClass("o") &&
-        $("#four").hasClass("o") &&
-        $("#seven").hasClass("o")) ||
-    ($("#two").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#eight").hasClass("o")) ||
-    ($("#three").hasClass("o") &&
-        $("#six").hasClass("o") &&
-        $("#nine").hasClass("o")) ||
-    ($("#one").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#nine").hasClass("o")) ||
-    ($("#three").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#seven").hasClass("o"));
-
-const isXWon = () =>
-    ($("#one").hasClass("x") &&
-        $("#two").hasClass("x") &&
-        $("#three").hasClass("x")) ||
-    ($("#four").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#six").hasClass("x")) ||
-    ($("#seven").hasClass("x") &&
-        $("#eight").hasClass("x") &&
-        $("#nine").hasClass("x")) ||
-    ($("#one").hasClass("x") &&
-        $("#four").hasClass("x") &&
-        $("#seven").hasClass("x")) ||
-    ($("#two").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#eight").hasClass("x")) ||
-    ($("#three").hasClass("x") &&
-        $("#six").hasClass("x") &&
-        $("#nine").hasClass("x")) ||
-    ($("#one").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#nine").hasClass("x")) ||
-    ($("#three").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#seven").hasClass("x"));
-
 $(document).ready(function() {
     var x = "x";
     var o = "o";
     var count = 0;
     var o_win = 0;
     var x_win = 0;
-    var size = 3;
+    var size = $("#board-size-input").val();
+    const reset = () => {
+        $("#game td").text("+");
+        $("#game td").removeClass("disable");
+        $("#game td").removeClass("o");
+        $("#game td").removeClass("x");
+        $("#game td").removeClass("btn-primary");
+        $("#game td").removeClass("btn-info");
+        count = 0;
+    };
 
-    click = thisObj => {
+    const isOWon = () => {
+        var oDiag1 = 0;
+        var oDiag2 = 0;
+        for (var i = 0; i < size; i++) {
+            if (
+                $(`.row${i + 1}`).filter(".o").length == size ||
+                $(`.col${i + 1}`).filter(".o").length == size
+            ) {
+                return true;
+            } else {
+                if (
+                    $("td")
+                        .filter(`.row${i + 1}.col${i + 1}`)
+                        .hasClass(`o`)
+                ) {
+                    oDiag1++;
+                }
+                if (
+                    $("td")
+                        .filter(`.row${i + 1}.col${size - i}`)
+                        .hasClass(`o`)
+                ) {
+                    oDiag2++;
+                }
+                if (oDiag1 == size || oDiag2 == size) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    const isXWon = () => {
+        var xDiag1 = 0;
+        var xDiag2 = 0;
+        for (var i = 0; i < size; i++) {
+            if (
+                $(`.row${i + 1}`).filter(".x").length == size ||
+                $(`.col${i + 1}`).filter(".x").length == size
+            ) {
+                return true;
+            } else {
+                if (
+                    $("td")
+                        .filter(`.row${i + 1}.col${i + 1}`)
+                        .hasClass(`x`)
+                ) {
+                    xDiag1++;
+                }
+                if (
+                    $("td")
+                        .filter(`.row${i + 1}.col${size - i}`)
+                        .hasClass(`x`)
+                ) {
+                    xDiag2++;
+                }
+                if (xDiag1 == size || xDiag2 == size) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    const click = thisObj => {
         if (isOWon()) {
             alert("O has won the game. Start a new game");
             reset();
@@ -104,35 +115,34 @@ $(document).ready(function() {
         }
     };
 
-    $("#board-size-input").on("change", function(e) {
-        size = e.target.value;
+    const renderTile = () => {
+        size = $("#board-size-input").val();
         reset();
         $("#game").empty();
         for (var i = 0; i < size; i++) {
             $("#game").append(
-                $("<tr></tr>").append(() => {
+                $(`<tr></tr>`).append(() => {
                     var rowCells = "";
                     for (var j = 0; j < size; j++) {
                         rowCells = rowCells.concat(
                             "",
-                            `<td id=${"" +
-                                (i * size + j + 1)} class="btn span1">+</td>`
+                            `<td id=${"" + (i * size + j + 1)} class="row${i +
+                                1} col${j + 1} btn span1">+</td>`
                         );
                     }
                     return rowCells;
                 })
             );
         }
-        // for (var i = 0; i < size * size; i++) {
-        //     $("#game").append(
-        //         $("<td>+</td>")
-        //             .attr({ id: "" + (i + 1) })
-        //             .addClass("btn span1")
-        //     );
-        // }
         $("#game td").click(function() {
             click($(this));
         });
+    }
+
+    renderTile()
+
+    $("#board-size-input").on("change", function() {
+        renderTile()
     });
 
     $("#game li").click(function() {
