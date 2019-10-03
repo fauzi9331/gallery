@@ -73,20 +73,10 @@ $(document).ready(function() {
     $("#game li").click(function() {
         if (isOWon()) {
             alert("O has won the game. Start a new game");
-            $("#game li").text("+");
-            $("#game li").removeClass("disable");
-            $("#game li").removeClass("o");
-            $("#game li").removeClass("x");
-            $("#game li").removeClass("btn-primary");
-            $("#game li").removeClass("btn-info");
+            reset()
         } else if (isXWon()) {
             alert("X wins has won the game. Start a new game");
-            $("#game li").text("+");
-            $("#game li").removeClass("disable");
-            $("#game li").removeClass("o");
-            $("#game li").removeClass("x");
-            $("#game li").removeClass("btn-primary");
-            $("#game li").removeClass("btn-info");
+            reset()
         } else if (count == 9) {
             alert("Its a tie. It will restart.");
             reset();
