@@ -82,7 +82,6 @@ $(document).ready(function() {
         } else if ($(this).hasClass("disable")) {
             alert("Already selected");
         } else if (count % 2 == 0) {
-            console.log("a");
             count++;
             thisObj.text(o);
             thisObj.addClass("disable o btn-primary");
@@ -109,14 +108,29 @@ $(document).ready(function() {
         size = e.target.value;
         reset();
         $("#game").empty();
-        for (var i = 0; i < size * size; i++) {
+        for (var i = 0; i < size; i++) {
             $("#game").append(
-                $("<li>+</li>")
-                    .attr({ id: "" + (i + 1) })
-                    .addClass("btn span1")
+                $("<tr></tr>").append(() => {
+                    var rowCells = "";
+                    for (var j = 0; j < size; j++) {
+                        rowCells = rowCells.concat(
+                            "",
+                            `<td id=${"" +
+                                (i * size + j + 1)} class="btn span1">+</td>`
+                        );
+                    }
+                    return rowCells;
+                })
             );
         }
-        $("#game li").click(function() {
+        // for (var i = 0; i < size * size; i++) {
+        //     $("#game").append(
+        //         $("<td>+</td>")
+        //             .attr({ id: "" + (i + 1) })
+        //             .addClass("btn span1")
+        //     );
+        // }
+        $("#game td").click(function() {
             click($(this));
         });
     });

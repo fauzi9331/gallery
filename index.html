@@ -14,35 +14,49 @@
 
     <body>
         <div id="tic-tac-toe">
-            <div class="row">
-                <h1 class="span3">Tic Tac Toe</h1>
-                <div class="span3">
-                    <div class="input-prepend input-append">
-                        <span class="add-on win_text">O won</span
-                        ><strong id="o_win" class="win_times add-on">0</strong
-                        ><span class="add-on">time(s)</span>
-                    </div>
-                    <div class="input-prepend input-append">
-                        <span class="add-on win_text">X won</span
-                        ><strong id="x_win" class="win_times add-on">0</strong
-                        ><span class="add-on">time(s)</span>
-                    </div>
-                </div>
-                <div id="options" class="span3">
-                    <form>
-                        <label>
-                            <p>Board Size</p>
-                            <input
-                                id="board-size-input"
-                                type="number"
-                                min="3"
-                                value="3"
-                            />
-                        </label>
-                    </form>
-                </div>
+            <h1 class="row">Tic Tac Toe</h1>
+            <div class="row input-prepend input-append">
+                <span class="add-on win_text">O won</span
+                ><strong id="o_win" class="win_times add-on">0</strong
+                ><span class="add-on">time(s)</span>
             </div>
-            <ul class="row span3" id="game">
+            <div class="row input-prepend input-append">
+                <span class="add-on win_text">X won</span
+                ><strong id="x_win" class="win_times add-on">0</strong
+                ><span class="add-on">time(s)</span>
+            </div>
+            <div id="options" class="row">
+                <form>
+                    <label>
+                        <p>Board Size</p>
+                        <input
+                            id="board-size-input"
+                            type="number"
+                            min="3"
+                            value="3"
+                        />
+                    </label>
+                </form>
+            </div>
+            <table id="game" class="row">
+                <tr>
+                    <td id="one" class="btn span1">+</td>
+                    <td id="two" class="btn span1">+</td>
+                    <td id="three" class="btn span1">+</td>
+                </tr>
+                <tr>
+                    <td id="four" class="btn span1">+</td>
+                    <td id="five" class="btn span1">+</td>
+                    <td id="six" class="btn span1">+</td>
+                </tr>
+                <tr>
+                    <td id="seven" class="btn span1">+</td>
+                    <td id="eight" class="btn span1">+</td>
+                    <td id="nine" class="btn span1">+</td>
+                </tr>
+            </table>
+
+            <!-- <ul id="game">
                 <li id="one" class="btn span1">+</li>
                 <li id="two" class="btn span1">+</li>
                 <li id="three" class="btn span1">+</li>
@@ -52,7 +66,7 @@
                 <li id="seven" class="btn span1">+</li>
                 <li id="eight" class="btn span1">+</li>
                 <li id="nine" class="btn span1">+</li>
-            </ul>
+            </ul> -->
             <div class="clr">&nbsp;</div>
             <div class="row">
                 <a href="#" id="reset" class="btn-success btn span3">Restart</a>
