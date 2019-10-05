@@ -6,7 +6,10 @@ $(document).ready(function() {
     var o_win = 0;
     var x_win = 0;
     var size = $("#board-size-input").val();
+    $("#turn-text").text('O turn')
+    
     const reset = () => {
+        $("#turn-text").text('O turn')
         $("#game td").text("+");
         $("#game td").removeClass("disable");
         $("#game td").removeClass("o");
@@ -93,6 +96,7 @@ $(document).ready(function() {
         } else if ($(this).hasClass("disable")) {
             alert("Already selected");
         } else if (count % 2 == 0) {
+            $("#turn-text").text('X turn')
             count++;
             thisObj.text(o);
             thisObj.addClass("disable o btn-primary");
@@ -103,6 +107,7 @@ $(document).ready(function() {
                 $("#o_win").text(o_win);
             }
         } else {
+            $("#turn-text").text('O turn')
             count++;
             thisObj.text(x);
             thisObj.addClass("disable x btn-info");
