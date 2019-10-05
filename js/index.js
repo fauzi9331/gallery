@@ -90,9 +90,6 @@ $(document).ready(function() {
         } else if (isXWon()) {
             alert("X wins has won the game. Start a new game");
             reset();
-        } else if (count == size * size) {
-            alert("Its a tie. It will restart.");
-            reset();
         } else if ($(this).hasClass("disable")) {
             alert("Already selected");
         } else if (count % 2 == 0) {
@@ -105,6 +102,9 @@ $(document).ready(function() {
                 count = 0;
                 o_win++;
                 $("#o_win").text(o_win);
+            } else if (count == size * size) {
+                alert("Its a tie. It will restart.");
+                reset();
             }
         } else {
             $("#turn-text").text('O turn')
@@ -116,6 +116,9 @@ $(document).ready(function() {
                 count = 0;
                 x_win++;
                 $("#x_win").text(x_win);
+            } else if (count == size * size) {
+                alert("Its a tie. It will restart.");
+                reset();
             }
         }
     };
