@@ -5,8 +5,11 @@
 .App {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 30px 1fr;
   justify-items: center;
   grid-gap: 20px;
+  height: 100vh;
+  padding: 20px;
 }
 
 .input-wrapper {
@@ -20,12 +23,11 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   flex-wrap: wrap;
   justify-items: center;
-  justify-content: center
+  justify-content: center;
+  width: 600px;
+  grid-gap: 20px;
 }
 
 .color-box {
-  color: white;
-  width: 100px;
-  height: 100px;
-  margin: 10px;
+  width: 100%;
 }
