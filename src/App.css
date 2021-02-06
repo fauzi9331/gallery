@@ -1,0 +1,31 @@
+*{
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.App {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 20px;
+}
+
+.input-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.color-box-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: center
+}
+
+.color-box {
+  color: white;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
