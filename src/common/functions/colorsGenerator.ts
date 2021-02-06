@@ -89,6 +89,7 @@ function generateUniqueCombinationOfNumbersArray(combinationLength: number, arra
   while(res.length<arrayLength) {
     // reset numbers
     numbers = []
+    // populate combination of numbers
     for(let i:number = 0; i < combinationLength; i++){
       numbers.push(Math.random())
     }

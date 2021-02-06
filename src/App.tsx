@@ -5,14 +5,15 @@ import ColorFilter from './common/interfaces/ColorFilter'
 import colorNameList from './common/constants/colorNameList'
 
 function App() {
-  const [category, setCategory] = useState('gray')
+  const [category, setCategory] = useState(colorNameList[0])
   const [saturation, setSaturation] = useState('')
 
   let colorFilter:ColorFilter = {
     category: category,
     saturation: saturation
   }
-  let colors = colorsGenerator(colorFilter)
+  // generate array of colors in format hsl()
+  let colors:Array<string> = colorsGenerator(colorFilter)
 
   return (
     <div className="App">
