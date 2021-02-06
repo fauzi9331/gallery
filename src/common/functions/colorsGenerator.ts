@@ -1,11 +1,11 @@
 import ColorFilter from '../interfaces/ColorFilter'
 import ColorObject from '../interfaces/ColorObject'
 
-function colorsGenerator(colorFilter:ColorFilter):string[] {
+function colorsGenerator(colorFilter:ColorFilter, colorArrayLength:number=40):string[] {
   /*
     generate array of colors in format 'hsl(hue, saturation, lightness)`
   */
-  let valuesArray:number[][] = generateUniqueCombinationOfNumbersArray(3,40)
+  let valuesArray:number[][] = generateUniqueCombinationOfNumbersArray(3,colorArrayLength)
   let colors: ColorObject[] = []
   let darkerCompensation = (colorFilter.saturation !== 'darker' ? 50 : 0)
 
@@ -82,12 +82,17 @@ function colorsGenerator(colorFilter:ColorFilter):string[] {
 
 function generateUniqueCombinationOfNumbersArray(combinationLength: number, arrayLength:number):Array<Array<number>>{
   /*
-    generate array of combination number between 0 and 1 with each length according to argument
+    generate array of combination of numbers between 0 and 1 with each length according to argument
   */
   let res:Array<Array<number>> = []
   let numbers:Array<number> = []
   while(res.length<arrayLength) {
-    numbers = [Math.random(), Math.random(), Math.random()]
+    // reset numbers
+    numbers = []
+    for(let i:number = 0; i < combinationLength; i++){
+      numbers.push(Math.random())
+    }
+
     if(!res.includes(numbers)) {
       res.push(numbers)
     }

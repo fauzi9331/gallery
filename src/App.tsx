@@ -19,7 +19,7 @@ function App() {
       {/*input box*/}
       <div className="input-wrapper">
         <div className="input-group">
-          <label htmlFor="category">category</label>
+          <label htmlFor="category">category: </label>
           <select name="category" id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
             {
               colorNameList.map(colorName => {
